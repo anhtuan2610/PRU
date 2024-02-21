@@ -40,12 +40,14 @@ public class Health : MonoBehaviour
                 //Enemy
                 if (GetComponentInParent<EnemyPatrol>() != null)
                 {
+                    GetComponent<LootBag>().InstantiateLoot(transform.position);
                     Debug.Log("enemypatrol");
                     GetComponentInParent<EnemyPatrol>().enabled = false;
                 }
 
                 if (GetComponent<Enemy1>() != null)
                 {
+                    GetComponent<LootBag>().InstantiateLoot(transform.position);
                     Debug.Log("enemy1");
                     GetComponent<Enemy1>().enabled = false;
                 }
