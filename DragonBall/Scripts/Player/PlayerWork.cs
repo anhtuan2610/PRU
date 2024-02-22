@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,21 +12,23 @@ public class PlayerWork : MonoBehaviour
     [SerializeField] private float jumpingPower = 4f;
     private bool isFacingRight = true;
 
-    private Rigidbody2D rb;
+    private Rigidbody2D rb; 
     private Animator anim;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
-
+        
         rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
         if (Input.GetKey(KeyCode.Space))
         {
@@ -33,8 +36,8 @@ public class PlayerWork : MonoBehaviour
             anim.SetFloat("jump", 1);
             anim.SetFloat("run", 0);
             //rb.AddForce(new Vector2(rb.velocity.x, jumpingPower));
-        } 
-        else if (Input.GetKey(KeyCode.J)) 
+        }
+        else if (Input.GetKey(KeyCode.J))
         {
             anim.SetFloat("punch", 1);
         }
@@ -44,10 +47,11 @@ public class PlayerWork : MonoBehaviour
             anim.SetFloat("jump", -1);
             anim.SetFloat("run", Mathf.Abs(horizontal)); //khi nhan vat dung yen horizontal = 0 (<0.1)-> stand animation , khi nhan vat di chuyen horizontal = -1 / 1 su dung gia tri tuyet doi Abs (>0.1) -> move animation
         }
-
-        Flip();
-
         
+        Flip();
+        
+
+
     }
 
     private void Flip()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PropRandom : MonoBehaviour
 {
-    // Start is called before the first frame update
+   
     public List<GameObject> propSpawnPoints;
     public List<GameObject> propPrefabs;
     void Start()
@@ -12,7 +12,7 @@ public class PropRandom : MonoBehaviour
         SpawnProps();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -26,5 +26,5 @@ public class PropRandom : MonoBehaviour
             GameObject prop = Instantiate(propPrefabs[rand], sp.transform.position, Quaternion.identity);
             prop.transform.parent = sp.transform;
         }
-    }
-}
+    } 
+}   
