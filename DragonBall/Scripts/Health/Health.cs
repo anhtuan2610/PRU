@@ -41,9 +41,19 @@ public class Health : MonoBehaviour
                     GetComponentInParent<EnemyPatrol>().enabled = false;
                 }
 
+                if (GetComponentInParent<EnemyFlyPatrol>() != null)
+                {
+                    GetComponentInParent<EnemyFlyPatrol>().enabled = false;
+                }
+
                 if (GetComponent<Enemy1>() != null)
                 {
                     GetComponent<Enemy1>().enabled = false;
+                }
+
+                if (GetComponent<EnemyFly1>() != null)
+                {
+                    GetComponent<EnemyFly1>().enabled = false;
                 }
 
 
