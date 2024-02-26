@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class LootBag : MonoBehaviour
 {
 
     public GameObject dropItemPrefab;
     public List<Loot> lootList = new List<Loot>();
+    private void Update()
+    {
+        
+    }
 
     Loot GetDroppedItem()
     {
@@ -39,11 +45,12 @@ public class LootBag : MonoBehaviour
         {
             GameObject lootGameObect = Instantiate(dropItemPrefab, spawnPosition, Quaternion.identity);
             lootGameObect.GetComponent<SpriteRenderer>().sprite = droppedItem.lootSprite;
+            lootGameObect.AddComponent<BoxCollider2D>(); 
+            lootGameObect.GetComponent<Rigidbody2D>().gravityScale = 1f;
+            lootGameObect.GetComponent<ItemController>().itemKey = droppedItem.keyItem;
 
-
-            float dropForce = 300f;
-            Vector2 dropDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            lootGameObect.GetComponent<Rigidbody2D>().AddForce(dropDirection * dropForce, ForceMode2D.Impulse);
+            Vector2 dropDirection = new Vector2(0,0);
+            lootGameObect.GetComponent<Rigidbody2D>().AddForce(dropDirection, ForceMode2D.Force);
 
         }
 

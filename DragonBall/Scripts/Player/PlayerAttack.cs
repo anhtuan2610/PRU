@@ -12,7 +12,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerWork playerMovement;
     private float cooldownTimer = Mathf.Infinity; // co the thay = 1 so lon' bat ki, set cho lan dau tien ?
 
-    private void Awake() // ham` awake duoc goi truoc tat ca ham Start()
+    private void Awake() 
     {
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerWork>();

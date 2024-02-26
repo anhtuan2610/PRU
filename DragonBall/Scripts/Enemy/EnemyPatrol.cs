@@ -23,9 +23,16 @@ public class EnemyPatrol : MonoBehaviour
     [Header("Enemy Animator")]
     [SerializeField] private Animator anim;
 
+    // Add start 2024/02/25 sondv
+    [SerializeField] FloatingHealthBar healthBar;
+    // Add end 2024/02/25 sondv
+
     private void Awake()
     {
         initScale = enemy.localScale;
+        // Add start 2024/02/25 sondv
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
+        // Add start 2024/02/25 sondv
     }
     private void OnDisable()
     {

@@ -10,15 +10,24 @@ public class Health : MonoBehaviour
     private Animator anim;
     private bool dead;
 
+    // Add start 2024/02/25 sondv
+    [SerializeField] FloatingHealthBar healthBar;
+    // Add end 2024/02/25 sondv
+
     private void Awake()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
+        // Add start 2024/02/25 sondv
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
+        // Add start 2024/02/25 sondv
     }
 
     public void TakeDamage(float _damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+
+        healthBar.UpdateHealthBar(currentHealth, startingHealth);
 
         if (currentHealth > 0)
         {
@@ -43,6 +52,7 @@ public class Health : MonoBehaviour
                     GetComponent<LootBag>().InstantiateLoot(transform.position);
                     Debug.Log("enemypatrol");
                     GetComponentInParent<EnemyPatrol>().enabled = false;
+                    Destroy(gameObject);
                 }
 
                 if (GetComponent<Enemy1>() != null)
@@ -50,6 +60,7 @@ public class Health : MonoBehaviour
                     GetComponent<LootBag>().InstantiateLoot(transform.position);
                     Debug.Log("enemy1");
                     GetComponent<Enemy1>().enabled = false;
+                    Destroy(gameObject);
                 }
 
 
