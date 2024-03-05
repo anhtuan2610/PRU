@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerWork : MonoBehaviour
@@ -71,8 +72,6 @@ public class PlayerWork : MonoBehaviour
             }
         }
         Flip();
-
-
     }
 
     private void Flip() // doi huong quay cua doi tuong
@@ -94,5 +93,16 @@ public class PlayerWork : MonoBehaviour
     public bool monkeyCheckPublic()
     {
         return monkeyCheck;
+    }
+
+    public void SetMonkeyCheck(bool monkeyCheck)
+    {
+        this.monkeyCheck = monkeyCheck;
+        anim.SetBool("monkey", true);
+        Invoke("DisableMonkeyAnimation", 3f);
+    }
+    private void DisableMonkeyAnimation()
+    {
+        anim.SetBool("monkey", false);
     }
 }

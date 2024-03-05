@@ -48,7 +48,6 @@ public class LootBag : MonoBehaviour
             lootGameObect.AddComponent<BoxCollider2D>(); 
             lootGameObect.GetComponent<Rigidbody2D>().gravityScale = 1f;
             lootGameObect.GetComponent<ItemController>().itemKey = droppedItem.keyItem;
-
             Vector2 dropDirection = new Vector2(0,0);
             lootGameObect.GetComponent<Rigidbody2D>().AddForce(dropDirection, ForceMode2D.Force);
 

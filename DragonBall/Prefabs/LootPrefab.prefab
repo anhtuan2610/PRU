@@ -94,7 +94,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7939150969779073794}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -144,6 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09a911ce75ccd24d85b7536e5cf173c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemKey: 0
+  healthBar: {fileID: 0}
+  player: {fileID: 0}
 --- !u!50 &29019854722443423
 Rigidbody2D:
   serializedVersion: 4

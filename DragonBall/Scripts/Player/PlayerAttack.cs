@@ -25,13 +25,15 @@ public class PlayerAttack : MonoBehaviour
     private Animator anim;
     private PlayerWork playerMovement;
     private Health enemyHealth;
-    
+
+    public GameObject player;
     private float cooldownTimer = Mathf.Infinity; // co the thay = 1 so lon' bat ki, set cho lan dau tien ?
 
     private void Awake() // ham` awake duoc goi truoc tat ca ham Start()
     {
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerWork>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
@@ -64,12 +66,15 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack()
     {
+        if (player.GetComponentInChildren<Health>().currentMP <= 0) return;
         if (playerMovement.monkeyCheckPublic())
         {
             anim.SetTrigger("monkeyKame");
             cooldownTimer = 0;
             monkeyKameBalls[0].transform.position = kamePoint.position;
             monkeyKameBalls[0].GetComponent<Projecttile>().SetDirection(Mathf.Sign(transform.localScale.x)); // ham Sign() tra ve -1 0 1 tuy` vao` dau' cua gia tri  
+            player.GetComponentInChildren<MPBar>().UpdateMPBar(player.GetComponentInChildren<Health>().currentMP - 1, player.GetComponentInChildren<Health>().startingMP);
+            player.GetComponentInChildren<Health>().currentMP -= 1;
         }
         else
         {
@@ -77,6 +82,9 @@ public class PlayerAttack : MonoBehaviour
             cooldownTimer = 0;
             kameBalls[0].transform.position = kamePoint.position;
             kameBalls[0].GetComponent<Projecttile>().SetDirection(Mathf.Sign(transform.localScale.x)); // ham Sign() tra ve -1 0 1 tuy` vao` dau' cua gia tri                  
+            player.GetComponentInChildren<MPBar>().UpdateMPBar(player.GetComponentInChildren<Health>().currentMP - 1, player.GetComponentInChildren<Health>().startingMP);
+            player.GetComponentInChildren<Health>().currentMP -= 1;
+            
         }
     }
 

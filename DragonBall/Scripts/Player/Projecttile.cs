@@ -6,13 +6,15 @@ public class Projecttile : MonoBehaviour
     [SerializeField] private float kameDamage = 1f;
     private float direction;
     private bool hit;
-
+    public MPBar mpBar;
+    public Health health;
     private BoxCollider2D boxCollider;
     private Animator anim;
-
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        mpBar = GetComponent<MPBar>();
+        health = GetComponent<Health>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
     private void Update()
@@ -26,7 +28,6 @@ public class Projecttile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collided with: " + collision.gameObject.name);
         if (collision.tag == "Enemy")
         {
             hit = true;

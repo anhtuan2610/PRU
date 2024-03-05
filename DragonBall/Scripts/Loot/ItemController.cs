@@ -7,7 +7,10 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     [SerializeField]public int itemKey;
-    [SerializeField] FloatingHealthBar healthBar;
+    public FloatingHealthBar healthBar;
+    public HPBar hpBar;
+    public Health health;
+    [SerializeField] private PlayerWork work;
     public GameObject player;
     private void Awake()
     {
@@ -15,7 +18,6 @@ public class ItemController : MonoBehaviour
     }
     private void Start()
     {
-        healthBar = GetComponentInChildren<FloatingHealthBar>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -30,16 +32,19 @@ public class ItemController : MonoBehaviour
                 if (item.GetComponent<ItemController>().itemKey is (int)EnumItem.dauthan or
                     (int)EnumItem.duiga)
                 {
-                    Debug.Log("An dau than");
+                    player.GetComponentInChildren<HPBar>().UpdateHPBar(player.GetComponentInChildren<Health>().currentHealth + 1, player.GetComponentInChildren<Health>().startingHealth);
+                    player.GetComponentInChildren<MPBar>().UpdateMPBar(player.GetComponentInChildren<Health>().currentMP + 1, player.GetComponentInChildren<Health>().startingMP);
+                    player.GetComponentInChildren<Health>().currentMP += 1;
+                    player.GetComponentInChildren<Health>().currentHealth += 1;
                 }
                 else if(item.GetComponent<ItemController>().itemKey is (int)EnumItem.hoakhi)
                 {
-                    player.GetComponent<Bag>().lootList.Add(item);
+                    player.GetComponentInChildren<PlayerWork>().SetMonkeyCheck(true);
                 }
                 else if(item.GetComponent<ItemController>().itemKey is (int)EnumItem.nr1sao)
                 {
                     Debug.Log("NR 1s");
-                    player.GetComponent<Bag>().lootList.Add(item);
+                    //player.GetComponent<Bag>().lootList.Add(item);
                 }
                 Destroy(item);
 

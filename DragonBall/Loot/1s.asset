@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootSprite: {fileID: 21300000, guid: 00389febeb6952d4aae3be3976aa6d75, type: 3}
   lootName: 1sao
-  dropChance: 10
+  dropChance: 0
   keyItem: 1
